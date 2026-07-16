@@ -280,69 +280,6 @@ window.addEventListener("load", () => {
 
 
 /*==================================================
-            TYPING EFFECT
-==================================================*/
-
-const typingText = document.querySelector(".hero h2");
-
-const words = [
-
-    "Software Developer",
-    "AWS Learner",
-    "AI Enthusiast",
-    "Python Developer"
-
-];
-
-let wordIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function typeEffect(){
-
-    if(!typingText) return;
-
-    const currentWord = words[wordIndex];
-
-    if(!deleting){
-
-        typingText.textContent =
-        currentWord.substring(0,charIndex++);
-
-        if(charIndex > currentWord.length){
-
-            deleting = true;
-
-            setTimeout(typeEffect,1500);
-
-            return;
-
-        }
-
-    }else{
-
-        typingText.textContent =
-        currentWord.substring(0,charIndex--);
-
-        if(charIndex < 0){
-
-            deleting = false;
-
-            wordIndex = (wordIndex+1)%words.length;
-
-        }
-
-    }
-
-    setTimeout(typeEffect,deleting?50:100);
-
-}
-
-typeEffect();
-
-
-
-/*==================================================
             ANIMATED COUNTERS
 ==================================================*/
 
@@ -456,103 +393,8 @@ scrollBtn.addEventListener("click",()=>{
     });
 
 });
-const header = document.querySelector("header");
 
 
-window.addEventListener("scroll",()=>{
-
-
-    if(window.scrollY > 50){
-
-        header.style.background =
-        "rgba(10,10,10,0.95)";
-
-    }
-
-    else{
-
-        header.style.background =
-        "rgba(10,10,10,0.75)";
-
-    }
-
-
-});
-const words=[
-
-"Computer Science Student",
-
-"AI Enthusiast",
-
-"AWS Cloud Learner",
-
-"Software Developer"
-
-];
-
-
-let index=0;
-
-let charIndex=0;
-
-let currentWord="";
-
-
-function type(){
-
-
-    currentWord=words[index];
-
-
-    document.getElementById("typing").textContent =
-    currentWord.substring(0,charIndex++);
-
-
-    if(charIndex <= currentWord.length){
-
-        setTimeout(type,100);
-
-    }
-
-    else{
-
-        setTimeout(erase,1500);
-
-    }
-
-
-}
-
-
-
-function erase(){
-
-
-    document.getElementById("typing").textContent =
-    currentWord.substring(0,charIndex--);
-
-
-    if(charIndex>=0){
-
-        setTimeout(erase,50);
-
-    }
-
-    else{
-
-        index=(index+1)%words.length;
-
-        charIndex=0;
-
-        setTimeout(type,500);
-
-    }
-
-
-}
-
-
-type();
 const cards =
 document.querySelectorAll(".project-card");
 
@@ -649,3 +491,226 @@ e.clientY+"px"
 
 });
 document.getElementById("year").textContent = new Date().getFullYear();
+// ==========================================
+// HERO TYPING EFFECT
+// ==========================================
+
+const typingElement = document.getElementById("typing");
+
+if (typingElement) {
+
+    const roles = [
+        "Python Developer",
+        "AWS Cloud Learner",
+        "Cloud Computing Enthusiast",
+        "AI & Machine Learning Explorer",
+        "Full Stack Developer (Learning)",
+        "CSE Student"
+    ];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+
+    function typingAnimation() {
+
+        let currentRole = roles[roleIndex];
+
+
+        if (!deleting) {
+
+            typingElement.textContent =
+                currentRole.substring(0, charIndex + 1);
+
+            charIndex++;
+
+
+            if (charIndex === currentRole.length) {
+
+                deleting = true;
+
+                setTimeout(typingAnimation, 1500);
+
+                return;
+            }
+
+        } else {
+
+
+            typingElement.textContent =
+                currentRole.substring(0, charIndex - 1);
+
+            charIndex--;
+
+
+            if (charIndex === 0) {
+
+                deleting = false;
+
+                roleIndex++;
+
+                if (roleIndex === roles.length) {
+                    roleIndex = 0;
+                }
+
+            }
+
+        }
+
+
+        setTimeout(typingAnimation, deleting ? 50 : 100);
+
+    }
+
+
+    typingAnimation();
+
+}
+// HERO TYPING EFFECT
+
+const typing = document.getElementById("typing");
+
+const roles = [
+    "Python Developer",
+    "AWS Cloud Learner",
+    "AI Enthusiast",
+    "Software Developer"
+];
+
+let role = 0;
+let letter = 0;
+
+function typingEffect(){
+
+    if(letter < roles[role].length){
+
+        typing.innerHTML += roles[role].charAt(letter);
+        letter++;
+
+        setTimeout(typingEffect,100);
+
+    }
+    else{
+
+        setTimeout(deleteEffect,1500);
+
+    }
+
+}
+
+
+function deleteEffect(){
+
+    if(letter > 0){
+
+        typing.innerHTML =
+        roles[role].substring(0,letter-1);
+
+        letter--;
+
+        setTimeout(deleteEffect,50);
+
+    }
+    else{
+
+        role++;
+
+        if(role >= roles.length){
+            role = 0;
+        }
+
+        setTimeout(typingEffect,500);
+
+    }
+
+}
+
+
+typingEffect();
+// ==========================================
+// NEW HERO TYPING EFFECT (SAFE VERSION)
+// ==========================================
+
+window.addEventListener("load", function () {
+
+    const typingBox = document.getElementById("typing");
+
+    if (!typingBox) return;
+
+
+    const textList = [
+        "Python Developer",
+        "AWS Cloud Learner",
+        "AI Enthusiast",
+        "Cloud Computing Explorer",
+        "Software Developer"
+    ];
+
+
+    let textIndex = 0;
+    let letterIndex = 0;
+    let isDeleting = false;
+
+
+    function runTyping() {
+
+        let currentText = textList[textIndex];
+
+
+        if (!isDeleting) {
+
+            typingBox.innerHTML =
+                currentText.substring(0, letterIndex + 1);
+
+            letterIndex++;
+
+
+            if (letterIndex === currentText.length) {
+
+                isDeleting = true;
+
+                setTimeout(runTyping, 1500);
+
+                return;
+            }
+
+
+        } else {
+
+
+            typingBox.innerHTML =
+                currentText.substring(0, letterIndex - 1);
+
+            letterIndex--;
+
+
+            if (letterIndex === 0) {
+
+                isDeleting = false;
+
+                textIndex++;
+
+                if (textIndex >= textList.length) {
+                    textIndex = 0;
+                }
+
+            }
+
+        }
+
+
+        setTimeout(
+            runTyping,
+            isDeleting ? 60 : 100
+        );
+
+    }
+
+
+    // Start only if empty
+    if (typingBox.innerHTML.trim() === "") {
+        runTyping();
+    }
+
+});

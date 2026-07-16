@@ -23,6 +23,9 @@
     --border: rgba(245,158,11,0.25);
 
 }
+html {
+    scroll-behavior: smooth;
+}
 
 
 
@@ -191,6 +194,13 @@ header{
     justify-content:space-between;
 
     align-items:center;
+    .navbar {
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
 }
 
@@ -333,14 +343,23 @@ header{
 
 
 
-.hero h1{
+.hero h1 {
+    background: linear-gradient(
+        90deg,
+        #10b981,
+        #34d399,
+        #ffffff
+    );
 
-    font-size:5rem;
+    background-size: 200%;
 
-    line-height:1.1;
+    background-clip: text;
+    -webkit-background-clip: text;
 
-    font-weight:900;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
 
+    animation: gradientMove 5s infinite;
 }
 
 
@@ -2097,4 +2116,321 @@ z-index:-1;
 }
 
 
+}
+/* ================================
+   SLOW SCROLL REVEAL EFFECT
+================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ================================
+   SLOW HOVER EFFECT FOR CARDS
+================================ */
+
+.project-card,
+.skill-card {
+    transition: transform 0.8s ease,
+                box-shadow 0.8s ease,
+                border-color 0.8s ease;
+}
+
+
+.project-card:hover {
+    transform: translateY(-18px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(16,185,129,0.35);
+}
+
+
+.skill-card:hover {
+    transform: translateY(-10px) scale(1.08);
+    box-shadow: 0 15px 40px rgba(16,185,129,0.3);
+}
+
+
+/* ================================
+   SMOOTH BUTTON MOVEMENT
+================================ */
+
+.btn {
+    transition: all 0.7s ease;
+}
+
+.btn:hover {
+    transform: translateY(-8px);
+}
+/* ================================
+   AMBIENT GREEN GLOW EFFECT
+================================ */
+
+body::before {
+
+    content:"";
+    position: fixed;
+
+    width:300px;
+    height:300px;
+
+    background:#10b981;
+
+    border-radius:50%;
+
+    filter:blur(150px);
+
+    opacity:0.15;
+
+    pointer-events:none;
+
+    z-index: -1;
+}
+body::before {
+    animation: glowMove 8s ease-in-out infinite;
+}
+
+
+@keyframes glowMove {
+
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(80px,50px);
+    }
+
+}
+/* ================================
+   ALL CUSTOM EFFECTS
+================================ */
+
+
+/* Hero gradient text */
+
+.hero h1 {
+    background: linear-gradient(
+        90deg,
+        #10b981,
+        #34d399,
+        #ffffff
+    );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientMove 5s infinite;
+}
+
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0%;
+    }
+
+    50% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 0%;
+    }
+
+}
+/* ================================
+   HERO TITLE GRADIENT EFFECT
+================================ */
+
+.hero-title-gradient {
+
+    background: linear-gradient(
+        90deg,
+        #10b981,
+        #34d399,
+        #ffffff,
+        #10b981
+    );
+
+    background-size: 300%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    animation: heroGradientMove 6s ease infinite;
+
+}
+
+
+@keyframes heroGradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+.hero-title-gradient span {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+/* Fix hero gradient overriding span color */
+
+.hero-title-gradient,
+.hero-title-gradient span {
+
+    background: linear-gradient(
+        90deg,
+        #10b981,
+        #34d399,
+        #ffffff,
+        #10b981
+    );
+
+    background-size: 300%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    animation: heroGradientMove 6s ease infinite;
+
+}
+
+
+@keyframes heroGradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+#typing {
+    color: #10b981;
+    font-size: 28px;
+    font-weight: 600;
+    min-height: 40px;
+}
+/* HERO NAME GRADIENT OVERRIDE */
+
+.hero h1,
+.hero h1 span {
+
+    background: linear-gradient(
+        90deg,
+        #10b981,
+        #34d399,
+        #ffffff,
+        #10b981
+    );
+
+    background-size: 300%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    animation: nameGradient 6s ease infinite;
+
+}
+
+
+@keyframes nameGradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+/* HERO NAME GOLD + WHITE GRADIENT */
+
+.hero h1,
+.hero h1 span {
+
+    background: linear-gradient(
+        90deg,
+        #f59e0b,
+        #ffffff,
+        #fbbf24,
+        #ffffff,
+        #f59e0b
+    );
+
+    background-size: 300%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    animation: goldNameGradient 6s ease infinite;
+
+}
+
+
+@keyframes goldNameGradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+#typing {
+    color: #f59e0b;
+    font-weight: 600;
+}
+.hero h1 {
+    text-shadow: 0 0 25px rgba(245,158,11,0.25);
+}
+.project-card:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 20px 50px rgba(245,158,11,0.25);
 }
